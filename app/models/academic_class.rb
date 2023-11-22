@@ -1,0 +1,2 @@
+class AcademicClass < ApplicationRecord
+end

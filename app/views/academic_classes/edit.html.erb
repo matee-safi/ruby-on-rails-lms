@@ -1,0 +1,8 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing academic class</h1>
+
+  <%= render "form", academic_class: @academic_class %>
+
+  <%= link_to "Show this academic class", @academic_class, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Back to academic classes", academic_classes_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>

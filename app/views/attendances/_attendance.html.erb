@@ -1,0 +1,22 @@
+<div id="<%= dom_id attendance %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= attendance.user_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Academic class:</strong>
+    <%= attendance.academic_class_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date:</strong>
+    <%= attendance.date %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this attendance", attendance, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this attendance", edit_attendance_path(attendance), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

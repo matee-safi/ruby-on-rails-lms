@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RubyOnRailsLms</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <main class="container mx-auto base">
+      <nav class="flex justify-between items-center h-12">
+        <div>
+          <h1 class="font-bold text-rose-700 text-xl">RubyOnRailsLms</h1>
+        </div>
+        <ul class="flex gap-5">
+          <% if user_signed_in? %>
+            <li><%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete }, class:"btn bg-red-500" %></li>
+          <% else %>
+            <li><%= link_to 'Sign in', new_user_registration_path, class:"btn" %></li>
+            <li><%= link_to 'Log in', user_session_path, class:"btn bg-green-500" %></li>
+          <% end %>
+        </ul>
+      </nav>
+      <%= yield %>
+    </main>
+  </body>
+</html>
