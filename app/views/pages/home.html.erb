@@ -1,10 +1,23 @@
-<nav class="flex justify-between items-center h-12">
-  <div>
-    <h1 class="font-bold text-rose-700 text-xl">RubyOnRailsLms</h1>
-  </div>
-  <ul class="flex gap-5">
-    <li><%= link_to 'Sign in', new_user_registration_path, class:"btn" %></li>
-    <li><%= link_to 'Log in', user_session_path, class:"btn bg-green-500" %></li>
-  </ul>
-</nav>
-<h1 class="flex items-center h-64 justify-center text-5xl font-bold text-rose-700">This is the landing page</h1>
+<h1>Latest Blogs</h1>
+<% if @blogs.present? %>
+  <% @blogs.each do |blog| %>
+    <div>
+      <h2><%= blog.title %></h2>
+      <p><%= blog.content %></p>
+    </div>
+  <% end %>
+<% else %>
+  <h1>No blogs present</h1>
+<% end %>
+
+<h1>Latest Courses</h1>
+<% if @courses.present? %>
+  <% @courses.each do |course| %>
+    <div>
+      <h2><%= course.name %></h2>
+      <p><%= course.duration %></p>
+    </div>
+  <% end %>
+<% else %>
+  <h1>No courses present</h1>
+<% end %>
