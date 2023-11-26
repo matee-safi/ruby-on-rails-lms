@@ -1,16 +1,13 @@
 class PagesController < ApplicationController
-  def Index
+  def index
   end
 
-  def Home
-    # Assuming `latest_courses` is defined in CoursesController
-    courses_controller = CoursesController.new
-    courses_controller.latest_courses
-
-    # Now @courses should be available in the PagesController
-    @courses = courses_controller.instance_variable_get(:@courses)
+  def home
+    @latest_courses = Course.last(5)
+    @courses = Course.all
+    @blogs = Blog.all
   end
 
-  def Dashboard
+  def dashboard
   end
 end

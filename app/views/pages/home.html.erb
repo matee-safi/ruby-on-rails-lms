@@ -1,23 +1,19 @@
-<h1>Latest Blogs</h1>
-<% if @blogs.present? %>
-  <% @blogs.each do |blog| %>
-    <div>
-      <h2><%= blog.title %></h2>
-      <p><%= blog.content %></p>
-    </div>
-  <% end %>
-<% else %>
-  <h1>No blogs present</h1>
-<% end %>
-
-<h1>Latest Courses</h1>
-<% if @courses.present? %>
-  <% @courses.each do |course| %>
-    <div>
-      <h2><%= course.name %></h2>
-      <p><%= course.duration %></p>
-    </div>
-  <% end %>
-<% else %>
+<% if @latest_courses.empty? %>
   <h1>No courses present</h1>
+<% else %>
+  <div class="md:mx-8 lg:mx-12">
+    <h1 class="font-bold text-2xl py-2">Latest Courses</h1>
+    <% @latest_courses.each do |course| %>
+      <div class="card card-compact bg-base-300 mb-10 shadow-xl">
+        <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt=<%= course.name %> /></figure>
+        <div class="card-body">
+          <h2 class="card-title"><%= course.name %></h2>
+          <p>If a dog chews shoes whose shoes does he choose?</p>
+          <div class="card-actions justify-end">
+            <button class="btn btn-primary">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
