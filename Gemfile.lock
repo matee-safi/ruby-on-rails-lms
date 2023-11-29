@@ -100,6 +100,7 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
+    choice (0.2.0)
     chunky_png (1.4.0)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
@@ -214,6 +215,11 @@ GEM
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
+    rails-erd (1.7.2)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
@@ -239,6 +245,8 @@ GEM
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
     rqrcode_core (1.2.0)
+    ruby-graphviz (1.2.5)
+      rexml
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
@@ -303,6 +311,7 @@ DEPENDENCIES
   puma (>= 5.0)
   pundit (~> 2.3)
   rails (~> 7.1.2)
+  rails-erd (~> 1.7)
   rqrcode (~> 2.2)
   selenium-webdriver
   simple_form (~> 5.3)
