@@ -6,7 +6,9 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%# <script src="https://cdn.tailwindcss.com"></script> %>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.14/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -15,7 +17,7 @@
     <div class="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <%= render 'layouts/nav' %>
+        <%= render partial: 'layouts/nav', locals: { user: @user } %>
         <%= render 'layouts/notice' %>
         <%# Main Page to be rendered %>
         <main class="container mx-auto overflow-x-hidden p-4">

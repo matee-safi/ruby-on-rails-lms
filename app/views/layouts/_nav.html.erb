@@ -18,6 +18,7 @@
           <% end %>
         </span>
       </div>
+      <% if user_signed_in? %>
       <ul class="menu menu-horizontal">
         <div class="dropdown dropdown-bottom dropdown-end">
           <button role="button" tabindex="0" class="me-5 md:me-8 dropdown">
@@ -33,20 +34,29 @@
         <div class="dropdown dropdown-end">
           <label tabindex="0" class="avatar online cursor-pointer">
             <div class="w-10 rounded-full ring ring-primary hover:ring-gray-600 transition ring-offset-base-100 ring-offset-2">
-              <img alt="Tailwind CSS Navbar component" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" />
+              <% if current_user.profile_picture %>
+                <%= image_tag current_user.profile_picture.url, alt:"Profile picture" %>
+              <% else %>
+                <svg class="w-10 h-8 mt-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 18">
+                  <path d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
+                </svg>
+              <% end %>
             </div>
           </label>
           <%# Profile Dropdown %>
           <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+            <div class="flex justify-center font-semibold pt-2 pb-4">
+              <%= current_user.name %>
+            </div>
             <li>
-              <button>
+              <%= link_to user_path(current_user) do %>
                 <svg class="w-[16px] h-[16px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 18">
                   <path d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
                 </svg>
                 <span>
                   Profile
                 </span>
-              </button>
+              <% end %>
             </li>
             <li>
               <button>
@@ -71,6 +81,11 @@
           </ul>
         </div>
       </ul>
+      <% else %>
+        <ul class="gap-5">
+          <li><%= link_to 'Sign in', new_user_registration_path, class:"btn btn-primary" %></li>
+        </ul>
+      <% end %>
     </div>
   </div> 
 </div>

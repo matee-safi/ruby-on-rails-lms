@@ -1,0 +1,15 @@
+<h1 class=""><%= current_user.name %>'s Profile</h1>
+<div>
+  <% if @user.profile_picture? %>
+    <%= image_tag @user.profile_picture.url, class: "rounded-full object-cover w-24 h-24", alt: 'Profile Picture' %>
+  <% else %>
+    <p>No profile picture available.</p>
+  <% end %>
+</div>
+
+<p><strong>Name:</strong> <%= @user.name %></p>
+<p><strong>Bio:</strong>
+
+</p>
+
+<%= link_to 'Edit Profile', edit_user_path %>
