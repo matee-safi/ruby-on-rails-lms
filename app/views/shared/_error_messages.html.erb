@@ -1,0 +1,10 @@
+<% if object.errors.any? %>
+  <div id="error_explanation" class="bg-danger p-3 rounded">
+    <strong>Oops! There were some errors:</strong>
+    <ul>
+      <% object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

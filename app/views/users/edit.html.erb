@@ -1,25 +1,56 @@
-<h1>Edit Your Profile</h1>
+<h1 class="text-3xl py-4 text-center text-primary">Edit Your Profile</h1>
+<%= simple_form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited Profile from being Updated:</h2>
 
-<%= form_for(@user) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <%= f.label :profile_picture %>
-  <%= f.file_field :profile_picture %>
+  <div class="flex flex-col gap-4 form-inputs">
+    <div class="flex flex-col">
+      <%= f.label :name %>
+      <%= f.input :name, class:"input input-bordered input-primary w-full max-w-xs" %>
+      <%# display error from validations %>
+      <% if @user.errors[:name].any? %>
+        <p class="text-red-500"><%= @user.errors[:name].first %></p>
+      <% end %>
+    </div>
+    <div class="flex flex-col">
+    <%= f.input :email, class: "input input-bordered input-primary w-full max-w-xs",
+                                required: true,
+                                placeholder: "name@company.com",
+                                autofocus: true,
+                                input_html: { autocomplete: "email" } %>
+    </div>
+    <div class="flex flex-col">
+      <%= f.label :profile_picture %>
+      <%= f.file_field :profile_picture, class:"file-input file-input-bordered file-input-primary w-full max-w-xs" %>
+    </div>
 
-  <%= f.label :bio %>
-  <%= f.text_area :bio %>
+    <div class="flex flex-col">
+    <%= f.label :bio %>
+    <%= f.text_area :bio, class:"textarea textarea-primary", placeholder:"Share a brief biography or provide details about your preferred time and platform for communication" %>
+    </div>
 
-  <%= f.label :date_of_birth %>
-  <%= f.date_field :date_of_birth %>
+    <div class="flex flex-col">
+    <%= f.label :date_of_birth %>
+    <%= f.date_field :date_of_birth, class:"input input-bordered input-primary w-full max-w-xs" %>
+    </div>
+      
+    <div class="flex flex-col">
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number, class:"input input-bordered input-primary w-full max-w-xs" %>
+    </div>
 
-  <%= f.label :phone_number %>
-  <%= f.text_field :phone_number %>
-
-  <%= f.label :profile_picture %>
-  <%= f.file_field :profile_picture %>
-
-  <%= f.submit 'Update Profile' %>
+    <%= f.submit 'Update Profile', class:"btn btn-primary bg-[#6A76F2]" %>
+  </div>
 <% end %>
 
+<%= render 'shared/error_messages', object: @user %>
 <%= link_to 'Back to Profile', user_path %>
