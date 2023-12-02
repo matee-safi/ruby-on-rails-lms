@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get 'dashboard', to: 'pages#dashboard'
   get 'home', to: 'pages#home'
+  get 'settings', to: 'pages#settings'
+  get 'profile', to: 'users#show'
+  get 'help', to: 'pages#help'
   # Defines the root path route ("/")
   authenticated :user do
     root to: 'pages#home', as: :authenticated_root

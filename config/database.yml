@@ -1,21 +1,15 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  user: postgres
-  password: 1234
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
   database: ruby_on_rails_lms_development
-  user: postgres
-  password: 1234
 
 test:
   <<: *default
   database: ruby_on_rails_lms_test
-  user: postgres
-  password: 1234
 
 production:
   <<: *default

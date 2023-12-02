@@ -82,5 +82,3 @@ gem "kaminari", "~> 1.2"
 gem "simple_form", "~> 5.3"
 
 gem "rails-erd", "~> 1.7"
-
-gem "carrierwave", "~> 3.0"

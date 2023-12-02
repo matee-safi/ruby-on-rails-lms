@@ -6,11 +6,34 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%# <script src="https://cdn.tailwindcss.com"></script> %>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.14/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.17/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <%= javascript_importmap_tags %>
+    <script defer>
+      function readURL(input) {
+        var preview = document.getElementById('profile-picture-preview');
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+
+      function showMore() {
+        const bioContent = document.getElementById('bio-content');
+        // Display the full bio
+        if (navigator.vibrate) {
+          // Vibrate for 200 milliseconds
+          navigator.vibrate(1);
+        }
+        bioContent.innerHTML = bioContent.getAttribute('data-full-bio');
+        // Hide the "Show more" button
+        showMoreBtn.style.display = 'none';
+      };
+    </script>
   </head>
   <body>
     <%# Sidebar stuff %>
