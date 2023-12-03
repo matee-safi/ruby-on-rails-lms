@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.17/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "turbo" %>
     <script defer>
       function readURL(input) {
         var preview = document.getElementById('profile-picture-preview');
@@ -24,15 +25,57 @@
 
       function showMore() {
         const bioContent = document.getElementById('bio-content');
-        // Display the full bio
         if (navigator.vibrate) {
-          // Vibrate for 200 milliseconds
-          navigator.vibrate(1);
+          navigator.vibrate(2);
         }
         bioContent.innerHTML = bioContent.getAttribute('data-full-bio');
-        // Hide the "Show more" button
-        showMoreBtn.style.display = 'none';
       };
+
+      // Function to set a cookie with a specified expiration time
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+      }
+
+      // Function to get the value of a cookie
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i];
+          while (cookie.charAt(0) === ' ') cookie = cookie.substring(1, cookie.length);
+          if (cookie.indexOf(nameEQ) === 0) return cookie.substring(nameEQ.length, cookie.length);
+        }
+        return null;
+      }
+
+      // Function to switch theme
+      function switchTheme(input) {
+        document.documentElement.setAttribute('data-theme', input);
+        setCookie('theme', input, 365); // Set the cookie to expire in 365 days
+      }
+
+      // Function to set the theme on page load
+      function setThemeOnLoad() {
+        const storedTheme = getCookie('theme');
+        const themeSwitcher = document.getElementById('theme-switcher');
+
+        // Set the theme from the cookie if available
+        if (storedTheme) {
+          document.documentElement.setAttribute('data-theme', storedTheme);
+
+          // Set the selected value in the <select> element
+          themeSwitcher.value = storedTheme;
+        }
+      }
+
+      // Call setThemeOnLoad when the page loads
+      document.addEventListener('turbo:load', setThemeOnLoad);
     </script>
   </head>
   <body>

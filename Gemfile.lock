@@ -310,7 +310,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
-  carrierwave (~> 3.0)
   debug
   devise (~> 4.9)
   importmap-rails

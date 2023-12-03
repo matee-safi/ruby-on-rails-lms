@@ -47,8 +47,8 @@
         </div>
       </div>
 
-      <%= f.submit 'UPDATE PROFILE', class:"btn btn-primary" %>
+      <%= f.submit "UPDATE PROFILE", disable_with: 'LOADING...', class:"btn btn-primary" %>
       <%= link_to 'CANCEL', profile_path, class:"btn" %>
     </div>
-  <% end %>  
+  <% end %>
 </div>
