@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_153550) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_07_052637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_153550) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "author_id", null: false
+    t.string "title_image"
+    t.index ["author_id"], name: "index_blogs_on_author_id"
   end
 
   create_table "certificates", force: :cascade do |t|
@@ -116,6 +119,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_153550) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "attendances", "academic_classes"
   add_foreign_key "attendances", "users"
+  add_foreign_key "blogs", "users", column: "author_id"
   add_foreign_key "certificates", "users"
   add_foreign_key "grades", "academic_classes"
   add_foreign_key "grades", "users"

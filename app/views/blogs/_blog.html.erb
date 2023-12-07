@@ -1,12 +1,32 @@
 <div id="<%= dom_id blog %>">
   <p class="my-5">
+    <%=
+      if blog.title_image.attached?
+        image_tag blog.title_image, class: "w-full h-full object-cover rounded-lg"
+      else
+        image_tag "https://media.coschedule.com/uploads/2021/03/52a85a8d-74c3-413f-9703-865ad8d604a0_catchy-blog-title-formulas.gif", class: "w-full h-full object-cover rounded-lg"
+      end
+    %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Author:</strong>
+    <%= blog.author.name %>
+  </p>
+
+  <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
     <%= blog.title %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Content:</strong>
-    <%= blog.content %>
+    <%= blog.content.html_safe %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Written on:</strong>
+    <%= blog.created_at.strftime("%B %d, %Y") %>
   </p>
 
   <% if action_name != "show" %>
