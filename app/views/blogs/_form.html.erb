@@ -14,25 +14,49 @@
     <%= f.text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div data-controller="blog-image-preview" class="my-5">
+  <div data-controller="blog-image-preview" id="image-preview" class="my-5">
     <%= f.label :title_image %> (Optional but recommended)
-    <%= f.file_field :title_image,
-      direct_upload: true,
-      data: { target: "blog-image-preview.input", action: "change->blog-image-preview#preview" },
-      class: "file-input file-input-bordered file-input-primary mt-2 w-full"
-    %>
+    <div class="join w-full">
+      <%= f.file_field :title_image,
+        direct_upload: true,
+        data: { target: "blog-image-preview.input", action: "change->blog-image-preview#preview" },
+        class: "join-item file-input file-input-bordered file-input-primary mt-2 w-full"
+      %>
+      <%= button_tag "Remove Image", data: { action: "click->blog-image-preview#removeImage" }, type: "button", class: "join-item btn btn-error mt-2 bg-[#EF4D57] dark:bg-[#EF4E5C]", onclick: "setRemove()" %>
+    </div>
     <% if blog.title_image.attached? %>
+      <%= link_to "Remove Image", blog_title_image_path(blog), data: { turbo_method: :delete }, class: "hidden", id: "remove-image-link" %>
       <%= image_tag blog.title_image, data: { target: "blog-image-preview.preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
-      <%= button_tag "Remove Image", data: { action: "click->blog-image-preview#removeImage" }, type: "button", class: "btn btn-secondary mt-2" %>
     <% else %>
       <%= image_tag "https://www.eventbrite.com/engineering/wp-content/uploads/engineering/2018/08/Flexible-Reusable-React-File-Uploader.png", data: { target: "blog-image-preview.preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
-      <!-- Add a hidden field to track removal of image during update -->
-      <%= f.hidden_field :remove_title_image, value: false %>
     <% end %>
   </div>
 
   <div class="flex gap-5 justify-end">
-    <%= link_to "Cancel", blogs_path, class: "btn" %>
-    <%= f.submit class:"btn btn-primary" %>
+    <% if blog.persisted? %>
+      <%= link_to "Cancel", blog_path(blog), class: "btn" %>
+    <% else %>
+      <%= link_to "Cancel", blogs_path, class: "btn" %>
+    <% end %>
+    <%= f.submit class: "btn btn-primary", onclick: "submitForm()" %>
   </div>
+
+  <script defer>
+    const setRemove = () => {
+      document.getElementById("image-preview").classList.add("delete");
+    }
+
+    const submitForm = () => {
+      event.preventDefault();
+      const removeImage = document.getElementById("image-preview");
+      const removeBtn = document.getElementById("remove-image-link");
+      if (removeImage.classList.contains("delete") && removeBtn) {
+        removeBtn.click();
+        event.target.form.submit();
+      } else {
+        event.target.form.submit();
+      }
+    }
+  </script>
+
 <% end %>

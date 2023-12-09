@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :certificates
-  resources :blogs
+  resources :blogs do
+    resource :title_image, only: [:destroy], module: :blogs
+  end
   resources :attendances
   resources :grades
   resources :courses
