@@ -19,16 +19,16 @@
     <div class="join w-full">
       <%= f.file_field :title_image,
         direct_upload: true,
-        data: { target: "blog-image-preview.input", action: "change->blog-image-preview#preview" },
+        data: { blog_image_preview_target: "input", action: "change->blog-image-preview#preview" },
         class: "join-item file-input file-input-bordered file-input-primary mt-2 w-full"
       %>
       <%= button_tag "Remove Image", data: { action: "click->blog-image-preview#removeImage" }, type: "button", class: "join-item btn btn-error mt-2 bg-[#EF4D57] dark:bg-[#EF4E5C]", onclick: "setRemove()" %>
     </div>
     <% if blog.title_image.attached? %>
       <%= link_to "Remove Image", blog_title_image_path(blog), data: { turbo_method: :delete }, class: "hidden", id: "remove-image-link" %>
-      <%= image_tag blog.title_image, data: { target: "blog-image-preview.preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
+      <%= image_tag blog.title_image, data: { blog_image_preview_target: "preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
     <% else %>
-      <%= image_tag "https://www.eventbrite.com/engineering/wp-content/uploads/engineering/2018/08/Flexible-Reusable-React-File-Uploader.png", data: { target: "blog-image-preview.preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
+      <%= image_tag "https://www.eventbrite.com/engineering/wp-content/uploads/engineering/2018/08/Flexible-Reusable-React-File-Uploader.png", data: { blog_image_preview_target: "preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
     <% end %>
   </div>
 

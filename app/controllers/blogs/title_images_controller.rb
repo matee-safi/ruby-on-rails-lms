@@ -7,6 +7,8 @@ class Blogs::TitleImagesController < ApplicationController
     redirect_to edit_blog_path(@blog)
   end
 
+  private
+
   def set_blog
     @blog = Blog.find(params[:blog_id])
   end
