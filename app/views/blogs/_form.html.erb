@@ -22,7 +22,7 @@
         data: { blog_image_target: "input", action: "change->blog-image#upload" },
         class: "join-item file-input file-input-bordered file-input-primary mt-2 w-full"
       %>
-      <%= button_tag "Remove Image", data: { action: "click->blog-image#removeImage" }, class: "join-item btn btn-error mt-2 bg-[#EF4D57] dark:bg-[#EF4E5C]" %>
+      <%= button_tag "Remove Image", data: { action: "click->blog-image#removeImage" }, type: "button", class: "join-item btn btn-error mt-2 bg-[#EF4D57] dark:bg-[#EF4E5C]" %>
     </div>
     <% if blog.title_image.attached? %>
       <%= link_to "Remove Image", blog_title_image_path(blog), data: { turbo_method: :delete, blog_image_target: "removeLink" }, class: "hidden" %>
