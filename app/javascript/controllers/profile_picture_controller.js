@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="profile-picture"
 export default class extends Controller {
-  static targets = [ "input", "preview", "removeLink" ]
+  static targets = [ "input", "preview", "removeLink", "name", "nameError" ]
 
   upload() {
     let input = this.inputTarget;
@@ -40,6 +40,16 @@ export default class extends Controller {
 
   submitForm() {
     event.preventDefault();
+    let name = this.nameTarget;
+    let nameError = this.nameErrorTarget;
+
+    if (name.value == "") {
+      name.focus();
+      nameError.classList.remove("hidden");
+      name.classList.add("input-error");
+      return;
+    }
+
     let input = this.inputTarget;
     let removeLink = this.hasRemoveLinkTarget ? this.removeLinkTarget : null;
 

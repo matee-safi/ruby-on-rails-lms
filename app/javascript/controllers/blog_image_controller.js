@@ -46,6 +46,7 @@ export default class extends Controller {
     let contentError = this.contentErrorTarget;
 
     if (title.value == "" && content.value == "") {
+      title.focus();
       titleError.classList.remove("hidden");
       title.classList.add("input-error");
       contentError.classList.remove("hidden");
