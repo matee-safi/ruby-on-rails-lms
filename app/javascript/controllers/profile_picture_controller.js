@@ -9,6 +9,7 @@ export default class extends Controller {
     let preview = this.previewTarget;
     let file = input.files[0];
     let reader = new FileReader();
+    let imagePath = this.element.getAttribute("data-image");
 
     reader.onloadend = function() {
       preview.src = reader.result;
@@ -17,19 +18,19 @@ export default class extends Controller {
     if (file) {
       reader.readAsDataURL(file);
     } else {
-      preview.src = "profile.jpg";
+      preview.src = imagePath;
     }
   }
 
   removeImage() {
     event.preventDefault();
-    let preview = this.previewTarget;
     let input = this.inputTarget;
+    let preview = this.previewTarget;
     let imagePath = this.element.getAttribute("data-image");
 
     input.value = "";
-    input.classList.add("delete")
-  
+    input.setAttribute("data-delete", "true");
+
     if (imagePath) {
       preview.src = imagePath;
     } else {
@@ -42,13 +43,13 @@ export default class extends Controller {
     let input = this.inputTarget;
     let removeLink = this.hasRemoveLinkTarget ? this.removeLinkTarget : null;
 
-    if(input.classList.contains("delete")) {
+    if (input.getAttribute("data-delete") === "true") {
       removeLink && removeLink.click();
-      input.classList.remove("delete");
+      input.removeAttribute("data-delete");
       input.value = "";
       this.element.submit();
     } else {
-      input.classList.remove("delete");
+      input.removeAttribute("data-delete");
       this.element.submit();
     }
   }

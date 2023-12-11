@@ -1,34 +1,34 @@
-<%= simple_form_for(blog) do |f| %>
-
+<%= simple_form_for blog, data: { controller: "blog-image", image: asset_path('upload.png') } do |f| %>
   <div class="mt-4">
     <%= render 'shared/error_messages', object: blog, locals: { class: "mt-4" } %>
   </div>
 
   <div class="my-5">
     <%= f.label :title %>
-    <%= f.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= f.text_field :title, class: "input input-bordered input-primary w-full my-2", data: { blog_image_target: "title" } %>
+    <p class="text-error hidden" data-blog-image-target="titleError">Title cannot be empty!</p>
   </div>
 
   <div class="my-5">
     <%= f.label :content %>
-    <%= f.text_area :content, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= f.text_area :content, rows: 4, class: "textarea textarea-primary w-full mt-2", data: { blog_image_target: "content" } %>
+    <p class="text-error hidden" data-blog-image-target="contentError">Content cannot be empty!</p>
   </div>
 
-  <div data-controller="blog-image-preview" id="image-preview" class="my-5">
+  <div class="my-5">
     <%= f.label :title_image %> (Optional but recommended)
     <div class="join w-full">
       <%= f.file_field :title_image,
-        direct_upload: true,
-        data: { blog_image_preview_target: "input", action: "change->blog-image-preview#preview" },
+        data: { blog_image_target: "input", action: "change->blog-image#upload" },
         class: "join-item file-input file-input-bordered file-input-primary mt-2 w-full"
       %>
-      <%= button_tag "Remove Image", data: { action: "click->blog-image-preview#removeImage" }, type: "button", class: "join-item btn btn-error mt-2 bg-[#EF4D57] dark:bg-[#EF4E5C]", onclick: "setRemove()" %>
+      <%= button_tag "Remove Image", data: { action: "click->blog-image#removeImage" }, class: "join-item btn btn-error mt-2 bg-[#EF4D57] dark:bg-[#EF4E5C]" %>
     </div>
     <% if blog.title_image.attached? %>
-      <%= link_to "Remove Image", blog_title_image_path(blog), data: { turbo_method: :delete }, class: "hidden", id: "remove-image-link" %>
-      <%= image_tag blog.title_image, data: { blog_image_preview_target: "preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
+      <%= link_to "Remove Image", blog_title_image_path(blog), data: { turbo_method: :delete, blog_image_target: "removeLink" }, class: "hidden" %>
+      <%= image_tag blog.title_image, data: { blog_image_target: "preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
     <% else %>
-      <%= image_tag "https://www.eventbrite.com/engineering/wp-content/uploads/engineering/2018/08/Flexible-Reusable-React-File-Uploader.png", data: { blog_image_preview_target: "preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
+      <%= image_tag "https://www.eventbrite.com/engineering/wp-content/uploads/engineering/2018/08/Flexible-Reusable-React-File-Uploader.png", data: { blog_image_target: "preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
     <% end %>
   </div>
 
@@ -38,25 +38,6 @@
     <% else %>
       <%= link_to "Cancel", blogs_path, class: "btn" %>
     <% end %>
-    <%= f.submit class: "btn btn-primary", onclick: "submitForm()" %>
+    <%= f.submit class: "btn btn-primary", data: { action: "click->blog-image#submitForm" } %>
   </div>
-
-  <script defer>
-    const setRemove = () => {
-      document.getElementById("image-preview").classList.add("delete");
-    }
-
-    const submitForm = () => {
-      event.preventDefault();
-      const removeImage = document.getElementById("image-preview");
-      const removeBtn = document.getElementById("remove-image-link");
-      if (removeImage.classList.contains("delete") && removeBtn) {
-        removeBtn.click();
-        event.target.form.submit();
-      } else {
-        event.target.form.submit();
-      }
-    }
-  </script>
-
 <% end %>
