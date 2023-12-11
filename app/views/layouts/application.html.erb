@@ -13,14 +13,6 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "turbo" %>
     <script defer>
-      function showMore() {
-        const bioContent = document.getElementById('bio-content');
-        if (navigator.vibrate) {
-          navigator.vibrate(2);
-        }
-        bioContent.innerHTML = bioContent.getAttribute('data-full-bio');
-      };
-
       // // Function to set a cookie with a specified expiration time
       // function setCookie(name, value, days) {
       //   var expires = "";

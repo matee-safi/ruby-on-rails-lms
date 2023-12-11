@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="blog-image"
+// Connects to data-controller="blog-form"
 export default class extends Controller {
   static targets = [ "input", "preview", "removeLink", "title", "content", "titleError", "contentError" ]
 

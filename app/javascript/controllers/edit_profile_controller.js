@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="profile-picture"
+// Connects to data-controller="edit-profile"
 export default class extends Controller {
   static targets = [ "input", "preview", "removeLink", "name", "nameError" ]
 

@@ -1,32 +1,32 @@
-<%= simple_form_for @user, data: { controller: "profile-picture", action: "submit->profile-picture#submitForm", image: asset_path('profile.jpg') } do |f| %>
+<%= simple_form_for @user, data: { controller: "edit-profile", action: "submit->edit-profile#submitForm", image: asset_path('profile.jpg') } do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
   <div class="flex flex-col gap-4 form-inputs py-4 mt-2">
     <div class="w-60 h-60 ring ring-primary rounded-full mx-auto md:mx-0">
       <% if @user.profile_picture.present? %>
-        <%= link_to "Remove Profile Picture", user_profile_picture_path(@user), data: { turbo_method: :delete, profile_picture_target: "removeLink" }, class: "hidden" %>
-        <%= image_tag @user.profile_picture, class: "w-full h-full object-cover rounded-full", data: { profile_picture_target: "preview" } %>
+        <%= link_to "Remove Profile Picture", user_profile_picture_path(@user), data: { turbo_method: :delete, edit_profile_target: "removeLink" }, class: "hidden" %>
+        <%= image_tag @user.profile_picture, class: "w-full h-full object-cover rounded-full", data: { edit_profile_target: "preview" } %>
       <% else %>
-        <%= image_tag 'profile.jpg', class: "w-full h-full object-cover rounded-full", data: { profile_picture_target: "preview" } %>
+        <%= image_tag 'profile.jpg', class: "w-full h-full object-cover rounded-full", data: { edit_profile_target: "preview" } %>
       <% end %>
     </div>
 
     <div class="">
-      <%= f.label :profile_picture %>
+      <%= f.label :edit_profile %>
       <div class="join w-full">
-        <%= f.file_field :profile_picture,
+        <%= f.file_field :edit_profile,
           class:"file-input file-input-bordered file-input-primary w-full join-item",
           direct_upload: true,
-          data: { profile_picture_target: "input", action: "change->profile-picture#upload" }
+          data: { edit_profile_target: "input", action: "change->edit-profile#upload" }
         %>
-        <%= button_tag "Remove Image", class: "btn btn-error join-item", type: "button", data: { action: "click->profile-picture#removeImage" } %>
+        <%= button_tag "Remove Image", class: "btn btn-error join-item", type: "button", data: { action: "click->edit-profile#removeImage" } %>
       </div>
     </div>
 
     <div class="flex flex-col">
       <%= f.label :name %>
-      <%= f.text_field :name, class:"input input-bordered input-primary", data: {profile_picture_target: "name"} %>
-      <p class="text-error hidden" data-profile-picture-target="nameError">Name cannot be blank!</p>
+      <%= f.text_field :name, class:"input input-bordered input-primary", data: {edit_profile_target: "name"} %>
+      <p class="text-error hidden" data-edit-profile-target="nameError">Name cannot be blank!</p>
     </div>
 
     <div class="flex flex-col">
@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <%= f.submit "Update Profile", class:"btn btn-primary", data: { action: "click->profile_picture#submitForm" } %>
+    <%= f.submit "Update Profile", class:"btn btn-primary", data: { action: "click->edit-profile#submitForm" } %>
     <%= link_to 'Cancel', profile_path, class:"btn" %>
   </div>
 <% end %>
