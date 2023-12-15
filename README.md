@@ -5,28 +5,32 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+- Ruby version
 
-```3.2.2```
+`3.2.2`
 
-* System dependencies
+- System dependencies
 
 `node.js`
 `bundler`
 `PostgreSQL`
 
-* Configuration
+- Configuration
 
 Please go to the root of the project /config/database.yml and make sure the database username and password matches your Postgres username and password.
 
-* Database creation
+and before running the server run `rails assets:precompile`
+
+- Database creation
 
 run `rails db:create` in the root of your project.
 
-* Database initialization
+- Database initialization
 
 run `rails db:migrate` in the root of your project.
 
-* How to run the test suite
+- Start the server
 
-run `rspec` in the root of your project. (no tests available at the moment)
+run `rails s`
+
+open chrome or any browser of your choice and go to http://localhost:3000/
