@@ -1,6 +1,6 @@
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-2" data-controller="settings">
   <label for="theme">Select Theme:</label>
-  <select id="theme-switcher" class="select select-primary w-full max-w-xs" onchange="switchTheme(this.value);">
+  <select name="theme" class="select select-primary" data-settings-target="input" data-action="change->settings#changeTheme">
     <option value="system">System</option>
     <option value="light">Light</option>
     <option value="dark">Dark</option>
