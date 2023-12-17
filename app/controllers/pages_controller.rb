@@ -3,9 +3,8 @@ class PagesController < ApplicationController
   end
 
   def home
-    @latest_courses = Course.last(5)
-    @courses = Course.all
-    @blogs = Blog.all
+    @latest_courses = Course.last(5).reverse
+    @latest_blogs = Blog.last(5).reverse
   end
 
   def dashboard

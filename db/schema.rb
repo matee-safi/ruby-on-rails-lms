@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_07_052637) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_30_132343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,11 +60,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_052637) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
-    t.text "content"
+    t.text "body"
+    t.string "title_image"
+    t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "author_id", null: false
-    t.string "title_image"
     t.index ["author_id"], name: "index_blogs_on_author_id"
   end
 
@@ -97,21 +97,20 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_052637) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.integer "role", default: 0
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "profile_picture"
     t.text "bio"
     t.date "date_of_birth"
     t.string "phone_number"
-    t.text "cropped_profile_picture"
+    t.string "profile_picture"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

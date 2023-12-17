@@ -8,27 +8,22 @@
       end
     %>
   </p>
-
   <p class="my-5">
     <strong class="block font-medium mb-1">Author:</strong>
     <%= blog.author.name %>
   </p>
-
   <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
     <%= blog.title %>
   </p>
-
   <p class="my-5">
     <strong class="block font-medium mb-1">Content:</strong>
-    <%= blog.content.html_safe %>
+    <%= blog.body %>
   </p>
-
   <p class="my-5">
     <strong class="block font-medium mb-1">Written on:</strong>
     <%= blog.created_at.strftime("%B %d, %Y") %>
   </p>
-
   <% if action_name != "show" %>
     <%= link_to "Show this blog", blog, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Edit this blog", edit_blog_path(blog), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

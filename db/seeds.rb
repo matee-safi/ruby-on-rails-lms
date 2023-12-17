@@ -21,7 +21,7 @@ end
 
 # Create 5 blogs
 5.times do |i|
-  Blog.find_or_create_by!(title: "Blog #{i + 1}", content: "This is blog #{i + 1}", author: first_user)
+  Blog.find_or_create_by!(title: "Blog #{i + 1}", body: "This is blog #{i + 1}", author: first_user)
 end
 
 # Create 5 courses

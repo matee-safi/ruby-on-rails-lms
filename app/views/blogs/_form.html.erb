@@ -2,19 +2,16 @@
   <div class="mt-4">
     <%= render 'shared/error_messages', object: blog, locals: { class: "mt-4" } %>
   </div>
-
   <div class="my-5">
     <%= f.label :title %>
     <%= f.text_field :title, class: "input input-primary w-full", data: { blog_form_target: "title" } %>
     <p class="text-error hidden" data-blog-form-target="titleError">Title cannot be blank!</p>
   </div>
-
   <div class="my-5">
-    <%= f.label :content %>
-    <%= f.text_area :content, rows: 4, class: "textarea textarea-primary w-full", data: { blog_form_target: "content" } %>
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: 4, class: "textarea textarea-primary w-full", data: { blog_form_target: "content" } %>
     <p class="text-error hidden" data-blog-form-target="contentError">Content cannot be blank!</p>
   </div>
-
   <div class="my-5">
     <%= f.label :title_image %> (Optional but recommended)
     <div class="join w-full">
@@ -31,7 +28,6 @@
       <%= image_tag "https://www.eventbrite.com/engineering/wp-content/uploads/engineering/2018/08/Flexible-Reusable-React-File-Uploader.png", data: { blog_form_target: "preview" }, class: "w-full h-full object-cover rounded-lg mt-2" %>
     <% end %>
   </div>
-
   <div class="flex gap-5 justify-end">
     <% if blog.persisted? %>
       <%= link_to "Cancel", blog_path(blog), class: "btn" %>
