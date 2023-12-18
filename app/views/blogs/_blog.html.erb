@@ -16,10 +16,12 @@
     <strong class="block font-medium mb-1">Title:</strong>
     <%= blog.title %>
   </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Content:</strong>
-    <%= blog.body %>
-  </p>
+  <div class="no-tailwindcss-base">
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Content:</strong>
+      <%= blog.content.html_safe %>
+    </p>
+  </div>
   <p class="my-5">
     <strong class="block font-medium mb-1">Written on:</strong>
     <%= blog.created_at.strftime("%B %d, %Y") %>

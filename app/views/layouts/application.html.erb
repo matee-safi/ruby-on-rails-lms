@@ -10,6 +10,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.17/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <%= tinymce_assets %>
+    <script type="text/javascript" src="/assets/tinymce.js"></script>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag "turbo" %>
   </head>

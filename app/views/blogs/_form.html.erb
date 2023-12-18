@@ -8,8 +8,9 @@
     <p class="text-error hidden" data-blog-form-target="titleError">Title cannot be blank!</p>
   </div>
   <div class="my-5">
-    <%= f.label :body %>
-    <%= f.text_area :body, rows: 4, class: "textarea textarea-primary w-full", data: { blog_form_target: "content" } %>
+    <%= f.label :content %>
+    <%= f.text_area :content, rows: 4, class: "tinymce textarea textarea-primary w-full", data: { blog_form_target: "content" } %>
+    <%= tinymce %>
     <p class="text-error hidden" data-blog-form-target="contentError">Content cannot be blank!</p>
   </div>
   <div class="my-5">

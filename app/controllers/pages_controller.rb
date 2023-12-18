@@ -3,8 +3,8 @@ class PagesController < ApplicationController
   end
 
   def home
-    @latest_courses = Course.last(5).reverse
-    @latest_blogs = Blog.last(5).reverse
+    @latest_courses = Course.order("created_at DESC").limit(5)
+    @latest_blogs = Blog.order("created_at DESC").limit(5)
   end
 
   def dashboard
