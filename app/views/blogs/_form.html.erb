@@ -9,8 +9,7 @@
   </div>
   <div class="my-5">
     <%= f.label :content %>
-    <%= f.text_area :content, rows: 4, class: "tinymce textarea textarea-primary w-full", data: { blog_form_target: "content" } %>
-    <%= tinymce %>
+    <%= f.text_area :content, rows: 4, class: "textarea textarea-primary w-full", data: { blog_form_target: "content" } %>
     <p class="text-error hidden" data-blog-form-target="contentError">Content cannot be blank!</p>
   </div>
   <div class="my-5">

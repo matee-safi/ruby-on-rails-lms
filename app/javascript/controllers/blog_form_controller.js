@@ -57,6 +57,12 @@ export default class extends Controller {
       title.classList.add("input-error");
       contentError.classList.add("hidden");
       content.classList.remove("textarea-error");
+    } else if (content.value === "") {
+      content.focus();
+      contentError.classList.remove("hidden");
+      content.classList.add("textarea-error");
+      titleError.classList.add("hidden");
+      title.classList.remove("input-error");
     } else {      
       let input = this.inputTarget;
       let removeLink = this.hasRemoveLinkTarget ? this.removeLinkTarget : null;
